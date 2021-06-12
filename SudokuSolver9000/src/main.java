@@ -3,7 +3,8 @@ import java.util.Iterator;
 
 public class main {
 	public static void main(String args[]) {
-		 long startTime = System.currentTimeMillis();
+
+		
 		Reader rd = new Reader();
 		Methods m = new Methods();
 		States s = new States();
@@ -11,8 +12,12 @@ public class main {
 		int solNum = -1;
 
 		rd.read();
+		
+		int nums = rd.nums;
+		
+		long startTime = System.currentTimeMillis();
+
 		int[][] sudoku = m.solve(m.deepCopy(rd.sudoku));
-		//Solution sola = new Solution(sudoku, rd.sudoku);
 		
 		if (!isFinal(sudoku)) {
 			ai.add(sudoku);
@@ -30,15 +35,13 @@ public class main {
 				if(solNum!=-1) {
 					long stopTime = System.currentTimeMillis();
 				    long elapsedTime = stopTime - startTime;
-					Solution sol = new Solution(ai.get(solNum), rd.sudoku,elapsedTime);
+					Solution sol = new Solution(ai.get(solNum), rd.sudoku,elapsedTime,nums);
 					break;
 				}			
 			}
 
 		} else {
-			long stopTime = System.currentTimeMillis();
-		    long elapsedTime = stopTime - startTime;
-			Solution sol = new Solution(sudoku, rd.sudoku,elapsedTime);
+			Solution sol = new Solution(sudoku, rd.sudoku,- startTime + System.currentTimeMillis(),nums );
 		}
 	}
 
