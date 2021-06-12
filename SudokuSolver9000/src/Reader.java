@@ -4,15 +4,17 @@ import java.io.FileReader;
 
 public class Reader {
 	int[][] sudoku = new int[9][9];
+	int nums = 0;
 
 	public int[][] read() {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("Sudoku.txt"));
 			String line = br.readLine();
 			while (line != null) {
-				String[] arr = line.split(";");				
+				String[] arr = line.split("");				
 				sudoku[Integer.parseInt(arr[0])-1][Integer.parseInt(arr[1])-1] = Integer.parseInt(arr[2]);
 				line = br.readLine();
+				nums++;
 			}
 			
 			return sudoku;
