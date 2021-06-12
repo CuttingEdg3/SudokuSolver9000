@@ -11,8 +11,10 @@ public class Solution extends JComponent {
 	final int dis = 75;
 	final int numSize = 25;
 	long time = 0;
+	int nums = 0;
+	String dif = "";
 
-	public Solution(int[][] sudoku,int[][] initial,long time) {
+	public Solution(int[][] sudoku,int[][] initial,long time,int nums) {
 		JFrame frame = new JFrame("Solution");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -22,6 +24,7 @@ public class Solution extends JComponent {
 		this.sudoku = sudoku;
 		this.initial=initial;
 		this.time = time;
+		this.nums = nums;
 	}
 
 	public void paintComponent(Graphics gr) {
@@ -69,9 +72,24 @@ public class Solution extends JComponent {
 			}			
 		}
 		
-		gr.drawString("Completed in : " + (double)time/1000+" secs", 75, 300);
-
+		gr.drawString("Completed in : " + (double)time/1000+" secs", 1100, 300);
 		
+		
+		
+		if(nums >= 32) {
+			dif = "Easy";
+		}
+		else if( nums >= 27) {
+			dif = "Medium";
+		}		
+		else if( nums >= 24) {
+			dif = "Hard";
+		}
+		else {
+			dif = "Very Hard";
+		}
+
+		gr.drawString("Numbers given  : " + nums+" | "+dif, 1100, 200);
 	}
 
 }
